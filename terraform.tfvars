@@ -38,21 +38,25 @@ vnets = {
 }
 
 subnets = {
+
   subnet1 = {
-    name                 = "frontend-subnet1"
+    name                = "frontend-subnet1"
     virtual_network_key = "vnet1"
     resource_group_key  = "rg1"
+    address_prefixes    = ["10.0.1.0/24"]
   }
 
   subnet2 = {
-    name                 = "frontend-subnet2"
+    name                = "frontend-subnet2"
     virtual_network_key = "vnet2"
     resource_group_key  = "rg2"
+    address_prefixes    = ["192.168.1.0/25"]
   }
 
   bastion_subnet = {
-    name                 = "AzureBastionSubnet"
+    name                = "AzureBastionSubnet"
     virtual_network_key = "vnet3"
     resource_group_key  = "rg3"
+    address_prefixes    = ["10.1.10.0/26"]
   }
 }
