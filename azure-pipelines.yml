@@ -7,5 +7,20 @@ pool:
 steps:
 
 - script: |
+    wget https://releases.hashicorp.com/terraform/1.12.2/terraform_1.12.2_linux_amd64.zip
+    unzip terraform_1.12.2_linux_amd64.zip
+    sudo mv terraform /usr/local/bin/
     terraform version
-  displayName: 'Check Terraform Version'
+  displayName: 'Install Terraform'
+
+- task: AzureCLI@2
+  displayName: 'Terraform Init Validate Plan Apply'
+  inputs:
+    azureSubscription: 'azure-sp-conn'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      terraform init -reconfigure
+      terraform validate
+      terraform plan
+      terraform apply -auto-approve
